@@ -6,7 +6,7 @@
   <title>NCC Timed Examination System</title>
   <style>
     /* ==========================================================================
-       1. GLOBAL & THEME STYLES (Army-Green Theme)
+       1. GLOBAL & THEME STYLES (Army-Green Theme & Universal Military Font)
        ========================================================================== */
     :root {
       --primary-color: #2e4d25;
@@ -33,14 +33,15 @@
       -webkit-touch-callout: none;
     }
 
-    /* Enable selection on input elements */
+    /* Enable text selection specifically for input fields */
     input, textarea {
       user-select: text !important;
       -webkit-user-select: text !important;
     }
 
+    /* Universal Military Monospace Font Stack (Available on all devices) */
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Courier New", Courier, monospace, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.5;
@@ -71,14 +72,16 @@
 
     .header h1 {
       font-size: 1.25rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       text-transform: uppercase;
+      font-weight: bold;
     }
 
     .header p {
       font-size: 0.8rem;
       opacity: 0.85;
-      margin-top: 2px;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
     }
 
     .screen {
@@ -100,16 +103,20 @@
     label {
       display: block;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: bold;
       color: var(--text-color);
       margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     input[type="text"] {
       width: 100%;
       padding: 12px;
       font-size: 1rem;
-      border: 1px solid var(--border-color);
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+      border: 2px solid var(--border-color);
       border-radius: var(--radius);
       background-color: #fafbfa;
       outline: none;
@@ -144,7 +151,10 @@
       border: none;
       border-radius: var(--radius);
       font-size: 1rem;
-      font-weight: 600;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -156,11 +166,6 @@
     .btn:disabled {
       background: #9e9e9e;
       cursor: not-allowed;
-    }
-
-    .btn-secondary {
-      background: #6c757d;
-      margin-top: 10px;
     }
 
     /* ==========================================================================
@@ -177,6 +182,7 @@
       font-weight: bold;
       font-size: 0.9rem;
       margin-bottom: 6px;
+      text-transform: uppercase;
     }
 
     .progress-bar-bg {
@@ -202,12 +208,13 @@
       font-size: 0.85rem;
       color: var(--text-muted);
       margin-bottom: 8px;
-      font-weight: 600;
+      font-weight: bold;
+      text-transform: uppercase;
     }
 
     .question-text {
       font-size: 1.05rem;
-      font-weight: 600;
+      font-weight: bold;
       color: var(--text-color);
       margin-bottom: 18px;
       word-wrap: break-word;
@@ -228,7 +235,8 @@
       border: 2px solid var(--border-color);
       border-radius: var(--radius);
       font-size: 0.95rem;
-      font-weight: 500;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
       color: var(--text-color);
       cursor: pointer;
       transition: all 0.15s;
@@ -293,6 +301,7 @@
     .stat-label {
       font-size: 0.75rem;
       color: var(--text-muted);
+      text-transform: uppercase;
     }
 
     .review-title {
@@ -301,6 +310,7 @@
       margin: 16px 0 12px 0;
       border-bottom: 2px solid var(--border-color);
       padding-bottom: 6px;
+      text-transform: uppercase;
     }
 
     .review-item {
@@ -314,7 +324,7 @@
     }
 
     .review-q {
-      font-weight: 600;
+      font-weight: bold;
       margin-bottom: 4px;
     }
 
@@ -365,6 +375,7 @@
       font-weight: bold;
       color: var(--danger-color);
       margin-bottom: 10px;
+      text-transform: uppercase;
     }
 
     .modal-body {
@@ -378,6 +389,7 @@
       font-size: 0.85rem;
       color: var(--danger-color);
       text-align: center;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -393,19 +405,15 @@
     <div id="start-screen" class="screen active">
       <div class="form-group">
         <label for="input-quiz-code">Quiz Code</label>
-        <input type="text" id="input-quiz-code" placeholder="e.g. NCC01" autocomplete="off" style="text-transform: uppercase;">
-      </div>
-      <div class="form-group">
-        <label for="input-reg-no">Regimental Number</label>
-        <input type="text" id="input-reg-no" placeholder="e.g. UK/24/SD/123456" autocomplete="off" style="text-transform: uppercase;">
+        <input type="text" id="input-quiz-code" autocomplete="off" style="text-transform: uppercase;">
       </div>
       <div class="form-group">
         <label for="input-name">Cadet Full Name</label>
-        <input type="text" id="input-name" placeholder="e.g. Cadet Keshav Tomar" autocomplete="off">
+        <input type="text" id="input-name" autocomplete="off">
       </div>
 
       <div class="instructions-box">
-        <strong>Examination Rules:</strong>
+        <strong>EXAMINATION RULES:</strong>
         <ul>
           <li>Strict time limit per question.</li>
           <li>No backward navigation or changing answers.</li>
@@ -439,7 +447,7 @@
 
     <!-- 3. RESULT SCREEN -->
     <div id="result-screen" class="screen">
-      <div id="sync-status" style="font-size: 0.85rem; text-align: center; color: var(--warning-color); margin-bottom: 10px; font-weight: 600;"></div>
+      <div id="sync-status" style="font-size: 0.85rem; text-align: center; color: var(--warning-color); margin-bottom: 10px; font-weight: bold;"></div>
       <div id="result-content"></div>
     </div>
   </div>
@@ -459,7 +467,7 @@
     /* ==========================================================================
        CONFIG & CONSTANTS
        ========================================================================== */
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyXQZ-OTuUFvL6l3Pr4w1iCrcEcd5JSP3P6_51xNADSQF3RBRobIDfyOsHcn0Lf0rmV/exec";
+    const WEB_APP_URL = "PASTE_WEB_APP_URL_HERE";
     const QUEUE_KEY = "ncc_quiz_submission_queue";
 
     /* ==========================================================================
@@ -469,7 +477,7 @@
     let questionsList = [];
     let currentQuestionIndex = 0;
     let cadetAnswers = []; // Store [{ qid, selected }]
-    let cadetDetails = { code: "", regNo: "", name: "" };
+    let cadetDetails = { code: "", regNo: "N/A", name: "" };
 
     let timerInterval = null;
     let timerEndTime = 0;
@@ -488,7 +496,6 @@
     const resultScreen = document.getElementById("result-screen");
 
     const inputQuizCode = document.getElementById("input-quiz-code");
-    const inputRegNo = document.getElementById("input-reg-no");
     const inputName = document.getElementById("input-name");
     const startBtn = document.getElementById("start-btn");
     const startStatus = document.getElementById("start-status");
@@ -533,10 +540,10 @@
        ========================================================================== */
     async function handleStartTest() {
       const code = inputQuizCode.value.trim().toUpperCase();
-      const regNo = inputRegNo.value.trim().toUpperCase();
       const name = inputName.value.trim();
+      const regNo = "N/A";
 
-      if (!code || !regNo || !name) {
+      if (!code || !name) {
         startStatus.innerText = "Please fill in all fields.";
         return;
       }
@@ -811,7 +818,7 @@
         <div class="result-summary">
           <h2>Result Submitted Successfully</h2>
           <div class="result-score">${resData.score} / ${resData.total}</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Total Score</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Total Score</p>
 
           <div class="stats-grid">
             <div class="stat-card">
