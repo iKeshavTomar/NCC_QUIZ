@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>NCC Timed Examination System</title>
+  <title>NCC Examination Portal</title>
   <style>
     /* ==========================================================================
-       1. GLOBAL & THEME STYLES (Army-Green Theme & Universal Military Font)
+       1. GLOBAL & THEME STYLES (Elegant Maroon & Light Color Scheme)
        ========================================================================== */
     :root {
-      --primary-color: #2e4d25;
-      --primary-dark: #1e3318;
-      --accent-color: #4b6b38;
-      --bg-color: #f4f6f3;
-      --card-bg: #ffffff;
-      --text-color: #1a2416;
-      --text-muted: #5a6654;
-      --border-color: #d0d7cc;
-      --danger-color: #c62828;
-      --danger-light: #ffebee;
-      --warning-color: #ef6c00;
-      --radius: 8px;
+      --primary-color: #6b1d2f;        /* Rich Deep Maroon */
+      --primary-dark: #4a121f;         /* Dark Burgundy */
+      --accent-color: #8c273e;        /* Light Maroon / Rose Accent */
+      --bg-color: #f8f4f5;            /* Soft Creamy Rose-Gray */
+      --card-bg: #ffffff;             /* Crisp White Card */
+      --text-color: #2b1b1e;          /* Dark Maroon-Black for text */
+      --text-muted: #6e5b5f;          /* Muted Rose-Taupe */
+      --border-color: #e2d5d8;        /* Soft Maroon Tint Border */
+      --danger-color: #c62828;        /* Alert Red */
+      --danger-light: #fde8e8;
+      --warning-color: #d97706;        /* Warm Amber */
+      --radius: 12px;
+      --shadow: 0 4px 16px rgba(107, 29, 47, 0.08);
     }
 
     * {
@@ -39,9 +40,9 @@
       -webkit-user-select: text !important;
     }
 
-    /* Universal Military Monospace Font Stack (Available on all devices) */
+    /* Modern, highly readable Sans-Serif Typography */
     body {
-      font-family: "Courier New", Courier, monospace, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.5;
@@ -57,7 +58,7 @@
       max-width: 520px;
       background: var(--card-bg);
       border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
       overflow: hidden;
       margin-top: 10px;
@@ -66,27 +67,28 @@
     .header {
       background: var(--primary-color);
       color: #ffffff;
-      padding: 16px;
+      padding: 20px 16px;
       text-align: center;
+      border-bottom: 3px solid var(--accent-color);
     }
 
     .header h1 {
       font-size: 1.25rem;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     .header p {
       font-size: 0.8rem;
-      opacity: 0.85;
+      opacity: 0.9;
       margin-top: 4px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
     .screen {
       display: none;
-      padding: 20px;
+      padding: 24px 20px;
     }
 
     .screen.active {
@@ -97,44 +99,46 @@
        2. FORM & BUTTON STYLES
        ========================================================================== */
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     label {
       display: block;
       font-size: 0.85rem;
-      font-weight: bold;
+      font-weight: 600;
       color: var(--text-color);
-      margin-bottom: 6px;
-      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
       text-transform: uppercase;
     }
 
     input[type="text"] {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       font-size: 1rem;
-      font-family: "Courier New", Courier, monospace;
-      font-weight: bold;
-      border: 2px solid var(--border-color);
+      font-family: inherit;
+      font-weight: 500;
+      border: 1.5px solid var(--border-color);
       border-radius: var(--radius);
-      background-color: #fafbfa;
+      background-color: #fdfbf7;
+      color: var(--text-color);
       outline: none;
-      transition: border 0.2s;
+      transition: all 0.2s ease;
     }
 
     input[type="text"]:focus {
       border-color: var(--primary-color);
       background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(107, 29, 47, 0.12);
     }
 
     .instructions-box {
-      background: #f0f4ef;
+      background: #fdf6f7;
       border-left: 4px solid var(--primary-color);
-      padding: 12px;
-      font-size: 0.85rem;
+      padding: 14px;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       border-radius: 0 var(--radius) var(--radius) 0;
     }
 
@@ -143,28 +147,35 @@
       margin-top: 6px;
     }
 
+    .instructions-box li {
+      margin-bottom: 4px;
+    }
+
     .btn {
       width: 100%;
-      padding: 14px;
+      padding: 15px;
       background: var(--primary-color);
-      color: white;
+      color: #ffffff;
       border: none;
       border-radius: var(--radius);
       font-size: 1rem;
-      font-family: "Courier New", Courier, monospace;
-      font-weight: bold;
-      letter-spacing: 1px;
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(107, 29, 47, 0.2);
     }
 
     .btn:active {
       background: var(--primary-dark);
+      transform: translateY(1px);
     }
 
     .btn:disabled {
-      background: #9e9e9e;
+      background: #c2b5b8;
+      box-shadow: none;
       cursor: not-allowed;
     }
 
@@ -172,23 +183,24 @@
        3. QUESTION SCREEN STYLES
        ========================================================================== */
     .timer-container {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .timer-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      color: var(--text-muted);
       text-transform: uppercase;
     }
 
     .progress-bar-bg {
       width: 100%;
       height: 8px;
-      background: #e0e0e0;
+      background: #efe6e8;
       border-radius: 4px;
       overflow: hidden;
     }
@@ -206,17 +218,19 @@
 
     .question-meta {
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--accent-color);
       margin-bottom: 8px;
-      font-weight: bold;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .question-text {
-      font-size: 1.05rem;
-      font-weight: bold;
+      font-size: 1.1rem;
+      font-weight: 600;
       color: var(--text-color);
-      margin-bottom: 18px;
+      margin-bottom: 22px;
+      line-height: 1.45;
       word-wrap: break-word;
     }
 
@@ -229,36 +243,43 @@
 
     .option-btn {
       width: 100%;
-      padding: 14px;
+      padding: 16px;
       text-align: left;
       background: #ffffff;
-      border: 2px solid var(--border-color);
+      border: 1.5px solid var(--border-color);
       border-radius: var(--radius);
-      font-size: 0.95rem;
-      font-family: "Courier New", Courier, monospace;
-      font-weight: bold;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 500;
       color: var(--text-color);
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.15s ease;
+      line-height: 1.4;
     }
 
     .option-btn:active {
-      background: #e8f5e9;
+      background: #fdf2f4;
       border-color: var(--primary-color);
     }
 
     .option-btn.selected {
       background: var(--primary-color);
-      color: white;
+      color: #ffffff;
       border-color: var(--primary-color);
+      box-shadow: 0 4px 10px rgba(107, 29, 47, 0.25);
     }
 
     .skip-btn {
       background: transparent;
       border: 1px solid var(--border-color);
       color: var(--text-muted);
-      padding: 10px;
+      padding: 12px;
       font-size: 0.85rem;
+      box-shadow: none;
+    }
+
+    .skip-btn:active {
+      background: #fdf6f7;
     }
 
     /* ==========================================================================
@@ -267,56 +288,61 @@
     .result-summary {
       text-align: center;
       margin-bottom: 20px;
-      padding: 16px;
-      background: #f0f4ef;
+      padding: 20px 16px;
+      background: #fdf6f7;
       border-radius: var(--radius);
+      border: 1px solid var(--border-color);
     }
 
     .result-score {
-      font-size: 2rem;
-      font-weight: bold;
+      font-size: 2.2rem;
+      font-weight: 700;
       color: var(--primary-color);
+      margin: 8px 0 2px 0;
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 12px;
+      gap: 10px;
+      margin-top: 16px;
       text-align: center;
     }
 
     .stat-card {
-      background: white;
-      padding: 8px;
-      border-radius: 6px;
+      background: #ffffff;
+      padding: 10px 8px;
+      border-radius: 8px;
       border: 1px solid var(--border-color);
     }
 
     .stat-value {
-      font-size: 1.1rem;
-      font-weight: bold;
+      font-size: 1.2rem;
+      font-weight: 700;
     }
 
     .stat-label {
       font-size: 0.75rem;
       color: var(--text-muted);
       text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 2px;
     }
 
     .review-title {
       font-size: 1rem;
-      font-weight: bold;
-      margin: 16px 0 12px 0;
+      font-weight: 700;
+      margin: 20px 0 12px 0;
       border-bottom: 2px solid var(--border-color);
-      padding-bottom: 6px;
+      padding-bottom: 8px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .review-item {
-      padding: 12px 0;
+      padding: 14px 0;
       border-bottom: 1px solid var(--border-color);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
 
     .review-item:last-child {
@@ -324,16 +350,18 @@
     }
 
     .review-q {
-      font-weight: bold;
-      margin-bottom: 4px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-color);
     }
 
     .review-ans {
-      margin-top: 2px;
+      margin-top: 4px;
+      font-weight: 500;
     }
 
     .ans-correct {
-      color: #2e7d32;
+      color: #1b7a42;
     }
 
     .ans-wrong {
@@ -350,7 +378,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(43, 27, 30, 0.6);
       z-index: 1000;
       justify-content: center;
       align-items: center;
@@ -363,33 +391,35 @@
 
     .modal-box {
       background: white;
-      padding: 20px;
+      padding: 24px;
       border-radius: var(--radius);
       max-width: 400px;
       width: 100%;
       text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
     .modal-title {
       font-size: 1.1rem;
-      font-weight: bold;
+      font-weight: 700;
       color: var(--danger-color);
       margin-bottom: 10px;
       text-transform: uppercase;
     }
 
     .modal-body {
-      font-size: 0.9rem;
-      margin-bottom: 16px;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
       color: var(--text-color);
+      line-height: 1.45;
     }
 
     .status-msg {
-      margin-top: 10px;
-      font-size: 0.85rem;
+      margin-top: 12px;
+      font-size: 0.88rem;
       color: var(--danger-color);
       text-align: center;
-      font-weight: bold;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -397,8 +427,8 @@
 
   <div class="container">
     <div class="header">
-      <h1>NCC Examination Portal</h1>
-      <p>11 UK Battalion - Online Evaluation</p>
+      <h1>TEST PORTAL</h1>
+      <p>SGRR UNIVERSITY NCC</p>
     </div>
 
     <!-- 1. START SCREEN -->
@@ -408,16 +438,16 @@
         <input type="text" id="input-quiz-code" autocomplete="off" style="text-transform: uppercase;">
       </div>
       <div class="form-group">
-        <label for="input-name">Cadet Full Name</label>
+        <label for="input-name">Name</label>
         <input type="text" id="input-name" autocomplete="off">
       </div>
 
       <div class="instructions-box">
         <strong>EXAMINATION RULES:</strong>
         <ul>
-          <li>Strict time limit per question.</li>
-          <li>No backward navigation or changing answers.</li>
-          <li><strong>Tab switches / minimizations are strictly monitored</strong> and will result in auto-submission.</li>
+          <li>Harr question pe time limit hai.</li>
+          <li>Question attempt krne ka ek hi mauka milega.</li>
+          <li><strong>Cheating krne ka sochna bhi mat</strong> wrna fir ...</li>
         </ul>
       </div>
 
@@ -447,7 +477,7 @@
 
     <!-- 3. RESULT SCREEN -->
     <div id="result-screen" class="screen">
-      <div id="sync-status" style="font-size: 0.85rem; text-align: center; color: var(--warning-color); margin-bottom: 10px; font-weight: bold;"></div>
+      <div id="sync-status" style="font-size: 0.85rem; text-align: center; color: var(--warning-color); margin-bottom: 10px; font-weight: 600;"></div>
       <div id="result-content"></div>
     </div>
   </div>
@@ -467,7 +497,7 @@
     /* ==========================================================================
        CONFIG & CONSTANTS
        ========================================================================== */
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyXQZ-OTuUFvL6l3Pr4w1iCrcEcd5JSP3P6_51xNADSQF3RBRobIDfyOsHcn0Lf0rmV/exec";
+    const WEB_APP_URL = "PASTE_WEB_APP_URL_HERE";
     const QUEUE_KEY = "ncc_quiz_submission_queue";
 
     /* ==========================================================================
@@ -818,7 +848,7 @@
         <div class="result-summary">
           <h2>Result Submitted Successfully</h2>
           <div class="result-score">${resData.score} / ${resData.total}</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Total Score</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Total Score</p>
 
           <div class="stats-grid">
             <div class="stat-card">
